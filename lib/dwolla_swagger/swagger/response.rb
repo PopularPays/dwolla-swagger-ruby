@@ -10,7 +10,7 @@ module DwollaSwagger
 
         case self.code
         when 500..510 then raise(ServerError, self.error_message)
-        when 299..426 then raise(ClientError, self.error_message)
+        when 299..426 then raise(ClientError.new(body), self.error_message)
         end
       end
 

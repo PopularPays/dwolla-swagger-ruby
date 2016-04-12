@@ -74,5 +74,9 @@ module DwollaSwagger
   end
 
   class ClientError < StandardError
+    attr_reader :params
+    def initialize(params)
+      @params = params
+    end
   end
 end

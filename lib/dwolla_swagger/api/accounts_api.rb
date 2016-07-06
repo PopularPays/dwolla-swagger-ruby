@@ -30,7 +30,7 @@ module DwollaSwagger
       query_params = {}
 
       # header parameters
-      header_params = {}
+      header_params = opts.fetch(:headers, {})
 
       # HTTP header 'Accept' (if needed)
       _header_accept = ['application/vnd.dwolla.v1.hal+json']
@@ -76,7 +76,7 @@ module DwollaSwagger
       query_params = {}
 
       # header parameters
-      header_params = {}
+      header_params = opts.fetch(:headers, {})
 
       # HTTP header 'Accept' (if needed)
       _header_accept = ['application/vnd.dwolla.v1.hal+json']

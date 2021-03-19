@@ -53,7 +53,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:GET, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = WebhookEventListResponse.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = WebhookEventListResponse.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -99,7 +99,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:GET, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = Webhook.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = Webhook.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -145,7 +145,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:GET, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = WebhookRetryRequestListResponse.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = WebhookRetryRequestListResponse.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -191,7 +191,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:POST, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = WebhookRetry.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = WebhookRetry.new() and obj.build_from_hash(response.body))
 
     end
   end

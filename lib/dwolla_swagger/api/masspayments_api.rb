@@ -53,7 +53,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:GET, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = MassPaymentListResponse.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = MassPaymentListResponse.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -103,7 +103,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:GET, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = MassPaymentListResponse.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = MassPaymentListResponse.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -143,7 +143,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:POST, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = Unit.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = Unit.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -189,7 +189,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:GET, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = MassPayment.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = MassPayment.new() and obj.build_from_hash(response.body))
 
     end
   end

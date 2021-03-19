@@ -49,7 +49,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:GET, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = FundingSourceListResponse.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = FundingSourceListResponse.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -95,7 +95,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:GET, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = FundingSourceListResponse.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = FundingSourceListResponse.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -142,7 +142,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:POST, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = FundingSource.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = FundingSource.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -182,7 +182,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:POST, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = FundingSource.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = FundingSource.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -228,7 +228,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:GET, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = FundingSource.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = FundingSource.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -275,7 +275,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:POST, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = Unit.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = Unit.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -321,7 +321,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:DELETE, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = FundingSource.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = FundingSource.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -367,7 +367,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:GET, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = FundingSourceBalance.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = FundingSourceBalance.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -413,7 +413,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:GET, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = MicroDeposits.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = MicroDeposits.new() and obj.build_from_hash(response.body))
 
     end
 
@@ -460,7 +460,7 @@ module DwollaSwagger
 
       response = Swagger::Request.new(:POST, path, {:params => query_params, :headers => header_params, :form_params => form_params, :body => post_body, :auth_names => @auth_names}).make
 
-      response.code == 201 ? obj = response.headers['Location'] : (obj = MicroDeposits.new() and obj.build_from_hash(response.body))
+      response.code == 201 ? obj = response.headers['location'] : (obj = MicroDeposits.new() and obj.build_from_hash(response.body))
 
     end
   end

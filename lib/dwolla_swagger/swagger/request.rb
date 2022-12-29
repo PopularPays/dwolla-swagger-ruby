@@ -93,7 +93,8 @@ module DwollaSwagger
 
         p = p.sub("{format}", self.format.to_s)
 
-        URI.encode [Swagger.configuration.base_path, p].join("/").gsub(/\/+/, '/')
+        # URI.encode [Swagger.configuration.base_path, p].join("/").gsub(/\/+/, '/')
+        URI::Parser.new.escape [Swagger.configuration.base_path, p].join("/").gsub(/\/+/, '/')
       end
 
       # Massage the request body into a state of readiness

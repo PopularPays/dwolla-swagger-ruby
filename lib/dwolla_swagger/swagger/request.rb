@@ -26,7 +26,7 @@ module DwollaSwagger
         # Merge argument headers into defaults
         attributes[:headers] = default_headers.merge(attributes[:headers] || {})
 
-        self.http_method = http_method.to_sym
+        self.http_method = http_method.to_sym.downcase
         self.path = path
         attributes.each do |name, value|
           send("#{name.to_s.underscore.to_sym}=", value)

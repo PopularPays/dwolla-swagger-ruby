@@ -1,11 +1,15 @@
 module DwollaSwagger
   module Swagger
     class Request
+      require 'faraday'
+      require 'faraday/net_http'
       require 'uri'
       require 'addressable/uri'
-      require 'typhoeus'
 
       attr_accessor :host, :path, :format, :params, :body, :http_method, :headers, :form_params, :auth_names
+
+      # Initialize Faraday connection
+      Faraday.default_adapter = :net_http
 
       # All requests must have an HTTP method and a path
       # Optionals parameters are :params, :headers, :body, :format, :host
@@ -22,7 +26,7 @@ module DwollaSwagger
         # Merge argument headers into defaults
         attributes[:headers] = default_headers.merge(attributes[:headers] || {})
 
-        self.http_method = http_method.to_sym
+        self.http_method = http_method.to_sym.downcase
         self.path = path
         attributes.each do |name, value|
           send("#{name.to_s.underscore.to_sym}=", value)
@@ -36,9 +40,7 @@ module DwollaSwagger
         (@auth_names || []).each do |auth_name|
           case auth_name
           when 'oauth2'
-            
             @headers.merge!({:Authorization => "Bearer #{Swagger.configuration.access_token}"})
-          
           end
         end
       end
@@ -93,7 +95,8 @@ module DwollaSwagger
 
         p = p.sub("{format}", self.format.to_s)
 
-        URI.encode [Swagger.configuration.base_path, p].join("/").gsub(/\/+/, '/')
+        # URI.encode [Swagger.configuration.base_path, p].join("/").gsub(/\/+/, '/')
+        URI::Parser.new.escape [Swagger.configuration.base_path, p].join("/").gsub(/\/+/, '/')
       end
 
       # Massage the request body into a state of readiness
@@ -151,45 +154,24 @@ module DwollaSwagger
       end
 
       def make
-        #TODO use configuration setting to determine if debugging
-        #logger = Logger.new STDOUT
-        #logger.debug self.url
-
-        request_options = {
-          :ssl_verifypeer => Swagger.configuration.verify_ssl,
-          :headers => self.headers.stringify_keys
-        }
-        response = case self.http_method.to_sym
-        when :get,:GET
-          Typhoeus::Request.get(
-            self.url,
-            request_options
-          )
-
-        when :post,:POST
-          Typhoeus::Request.post(
-            self.url,
-            request_options.merge(:body => self.outgoing_body)
-          )
-
-        when :patch,:PATCH
-          Typhoeus::Request.patch(
-            self.url,
-            request_options.merge(:body => self.outgoing_body)
-          )
-
-        when :put,:PUT
-          Typhoeus::Request.put(
-            self.url,
-            request_options.merge(:body => self.outgoing_body)
-          )
-
-        when :delete,:DELETE
-          Typhoeus::Request.delete(
-            self.url,
-            request_options.merge(:body => self.outgoing_body)
-          )
+        conn = Faraday.new(url: self.url) do |faraday|
+          faraday.request :url_encoded # form-encode POST params
+          faraday.adapter Faraday.default_adapter # make requests with Net::HTTP
+          faraday.headers = self.headers
+          if Swagger.configuration.verify_ssl
+            faraday.ssl.verify = true
+          else
+            faraday.ssl.verify = false
+          end
         end
+
+        response = conn.send(self.http_method) do |req|
+          case self.http_method
+          when :post, :patch, :put, :delete
+            req.body = self.outgoing_body unless self.outgoing_body.nil?
+          end
+        end
+
         Response.new(response)
       end
 
@@ -205,7 +187,7 @@ module DwollaSwagger
       def response_headers_pretty
         return unless @response.present?
         # JSON.pretty_generate(@response.headers).gsub(/\n/, '<br/>') # <- This was for RestClient
-        @response.headers.gsub(/\n/, '<br/>') # <- This is for Typhoeus
+        @response.headers.gsub(/\n/, '<br/>') # <- This is for Faraday
       end
 
       # return 'Accept' based on an array of accept provided

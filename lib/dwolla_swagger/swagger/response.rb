@@ -15,7 +15,7 @@ module DwollaSwagger
       end
 
       def code
-        raw.code
+        raw.status
       end
 
       # Account for error messages that take different forms...
@@ -33,18 +33,14 @@ module DwollaSwagger
         raw.body
       end
 
-      # `headers_hash` is a Typhoeus-specific extension of Hash,
-      # so simplify it back into a regular old Hash.
       def headers
-        h = {}
-        raw.headers_hash.each {|k,v| h[k] = v }
-        h
+        raw.headers
       end
 
       # Extract the response format from the header hash
       # e.g. {'Content-Type' => 'application/json'}
       def format
-        headers['Content-Type'].split("/").last.downcase
+        headers['Content-Type'].split(";").first.split("/").last.downcase
       end
 
       def json?

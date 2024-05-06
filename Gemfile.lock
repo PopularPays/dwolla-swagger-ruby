@@ -31,7 +31,7 @@ GEM
     hashdiff (1.0.1)
     json (2.7.1)
     public_suffix (4.0.6)
-    rake (10.5.0)
+    rake (12.3.3)
     rexml (3.2.5)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
@@ -65,7 +65,7 @@ DEPENDENCIES
   autotest-rails-pure (~> 4.1, >= 4.1.2)
   bundler (~> 2.4)
   dwolla_swagger!
-  rake (~> 10.0)
+  rake (~> 12.3)
   rspec (~> 3.2, >= 3.2.0)
   vcr (~> 2.9, >= 2.9.3)
   webmock (~> 1.6, >= 1.6.2)

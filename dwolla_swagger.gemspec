@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'json', '>= 2.3.0'
 
   s.add_development_dependency "bundler", "~> 2.4"
-  s.add_development_dependency "rake", "~> 10.0"
+  s.add_development_dependency "rake", "~> 12.3"
   s.add_development_dependency 'rspec', '~> 3.2', '>= 3.2.0'
   s.add_development_dependency 'vcr', '~> 2.9', '>= 2.9.3'
   s.add_development_dependency 'webmock', '~> 1.6', '>= 1.6.2'
